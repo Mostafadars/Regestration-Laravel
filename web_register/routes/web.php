@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\NewUserController;
+use App\Http\Controllers\ApiController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::group(['prefix' => '{locale}'], function() {
+//     Route::get('/', [NewUserController::class, 'create'])->name('register.create')->middleware('localization');
+// });
+
+Route::get('/register', [NewUserController::class, 'create'])->name('register.create');
+
+Route::post('/register', [NewUserController::class, 'store'])->name('register.store');
+
+Route::post('/actors', [ApiController::class, 'getActors'])->name('actors');
