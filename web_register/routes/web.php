@@ -1,6 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistMail;
 
 use App\Http\Controllers\NewUserController;
 use App\Http\Controllers\ApiController;
@@ -26,3 +29,11 @@ Route::get('/register', [NewUserController::class, 'create'])->name('register.cr
 Route::post('/register', [NewUserController::class, 'store'])->name('register.store');
 
 Route::post('/actors', [ApiController::class, 'getActors'])->name('actors');
+
+Route::get('/send', function()
+{
+    $name  = "tayseer abdelkader";
+    Mail::to('flotaabdelkader@gmail.com') ->send(new RegistMail($name));
+    return response('Email was sent to '.$name.' successfully');
+
+});
