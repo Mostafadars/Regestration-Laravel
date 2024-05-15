@@ -20,11 +20,13 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-// Route::group(['prefix' => '{locale}'], function() {
-//     Route::get('/', [NewUserController::class, 'create'])->name('register.create')->middleware('localization');
-// });
+Route::get('/', [NewUserController::class, 'create'])->name('register.create');
 
-Route::get('/register', [NewUserController::class, 'create'])->name('register.create');
+Route::group(['prefix' => '{locale}'], function() {
+    Route::get('/', [NewUserController::class, 'create'])->name('locale.register.create')->middleware('localization');
+});
+
+// Route::get('/register', [NewUserController::class, 'create'])->name('register.create')->middleware('localization');
 
 Route::post('/register', [NewUserController::class, 'store'])->name('register.store');
 
