@@ -9,21 +9,21 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RegistMail extends Mailable
+class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $name;
+    public $fullName;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($fullName)
     {
-        $this->name = $name;
+        $this->fullName = $fullName;
     }
-    
+
     // public function build()
     // {
     //     return $this->view('emails.mailTest');
@@ -51,7 +51,7 @@ class RegistMail extends Mailable
         return new Content(
             markdown: 'emails.mailTest',
         );
-        
+
     }
 
     /**

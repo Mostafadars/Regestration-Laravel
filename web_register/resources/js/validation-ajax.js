@@ -75,13 +75,15 @@ $(function () {
                 if (response) {
                     openPopupWithData("Actors Names", response);
                 } else {
-                    alert('Actors Names Failed to get');
+                    openPopupWithDataReg("Actors Error", 'Actors Names Failed to get');
+                    // alert('Actors Names Failed to get');
                 }
             },
             error: function(xhr, status, error) {
                 // Error callback function
-                console.error(xhr.responseText);
-                alert('Error occurred while fetching actor names. Please try again.');
+                // console.error(xhr.responseText);
+                openPopupWithDataReg("Actors Error", 'Error occurred while fetching actor names. Please try again.');
+                // alert('Error occurred while fetching actor names. Please try again.');
             }
         });
     });
@@ -204,7 +206,8 @@ $(function () {
                     openPopupWithDataReg("Registration Status", message);
                 } else {
                     // If registration failed, show error message
-                    alert('Registration failed. Please try again.');
+                    openPopupWithDataReg("Registration Status", 'Registration failed. Please try again.');
+                    // alert('Registration failed. Please try again.');
                 }
             },
             error: function(xhr, status, error) {
@@ -214,7 +217,9 @@ $(function () {
                 if (responseText.errors && responseText.errors.name) {
                     openPopupWithDataReg("Registration Status", "Username already exists");
                 } else {
-                    alert('Error occurred while registering. Please try again .');
+                    console.log(xhr.responseText);
+                    openPopupWithDataReg("Registration Status", "Error occurred while registering. Please try again .")
+                    // alert('Error occurred while registering. Please try again .');
                 }
             }
         });

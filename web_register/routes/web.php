@@ -30,10 +30,10 @@ Route::post('/register', [NewUserController::class, 'store'])->name('register.st
 
 Route::post('/actors', [ApiController::class, 'getActors'])->name('actors');
 
-Route::get('/send', function()
-{
-    $name  = "tayseer abdelkader";
-    Mail::to('flotaabdelkader@gmail.com') ->send(new RegistMail($name));
-    return response('Email was sent to '.$name.' successfully');
+// Route::get('/send', function()
+// {
+//     $name  = "tayseer abdelkader";
+//     Mail::to('flotaabdelkader@gmail.com') ->send(new RegistMail($name));
+//     return response('Email was sent to '.$name.' successfully');
 
-});
+// });

@@ -6,6 +6,8 @@ use App\Models\New_User;
 use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
 
 class NewUserController extends Controller
 {
@@ -18,7 +20,7 @@ class NewUserController extends Controller
     {
         $validatedData = $request->validate([
             'fname' => 'required|string',
-            'name' => ['required', 'string', Rule::unique('new_users', 'username')],
+            'name' => ['required', 'string', Rule::unique('new_user', 'username')],
             'birthdate' => 'required|date',
             'phone' => 'required|string|',
             'address' => 'required|string',
@@ -55,7 +57,7 @@ class NewUserController extends Controller
 
         if ($user) {
             // Send email
-            // Mail::to('mostafaalielshemy55@gmail.com')->send(new RegisterMail($validatedData['fname']));
+            Mail::to('mostafaalielshemy55@gmail.com')->send(new RegisterMail($validatedData['fname']));
 
             return response()->json(['success' => "User Registered Successfully"]);
         } else {
